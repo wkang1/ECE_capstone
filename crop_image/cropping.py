@@ -7,10 +7,10 @@ file = open('/home/d4/openpose_json/019_rpi_v3_imx477_cam0_keypoints.json')
 
 data = json.load(file)
 
-left_crop = data['part_candidates']['3'][0]
-right_crop = data['part_candidates']['6'][0]
-top_crop = data['part_candidates']['1'][1]
-bottom_crop = data['part_candidates']['8'][1]
+left_crop = data['part_candidates'][0]['3'][0]
+right_crop = data['part_candidates'][0]['6'][0]
+top_crop = data['part_candidates'][0]['1'][1]
+bottom_crop = data['part_candidates'][0]['8'][1]
 
 #crop according to dimensions
 cropped_img = img.crop((left_crop, top_crop, right_crop, bottom_crop))
