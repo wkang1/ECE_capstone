@@ -17,7 +17,10 @@ def get_color_name(unknown_color):
         color_name = closest_color(unknown_color)
     return color_name
 
-def find_color_recommend(in_col):
+def find_color_recommend(in_col_r, in_col_g, in_col_b):
+
+    in_col = (in_col_r,in_col_g,in_col_b)
+
     color_name = closest_color(in_col)
 
     color_recommendations = ()
@@ -26,7 +29,7 @@ def find_color_recommend(in_col):
     grays = {'darkgray', 'darkgrey', 'dimgray', 'dimgrey', 'gray', 'grey'}
     whites = {'aliceblue', 'antiquewhite', 'azure', 'beige', 'cornsilk', 'floralwhite', 'ghostwhite', 'honeydew', 'ivory', 'lavenderblush',\
              'linen', 'mintcream', 'oldlace', 'papayawhip', 'seashell', 'snow', 'white', 'whitesmoke', 'bisque', 'blanchedalmond'}
-    browns = {'brown', 'burlywood' 'chocolate', 'saddlebrown', 'sienna', 'tan', 'rosybrown'}
+    browns = {'burlywood', 'saddlebrown', 'sienna', 'tan'}
     lightblues = {'aqua', 'aquamarine', 'cornflowerblue', 'cyan', 'darkturquoise', 'deepskyblue', 'dodgerblue', 'lightblue', 'lightcyan',\
                 'lightskyblue', 'mediumturquoise', 'paleturquoise', 'powderblue', 'skyblue', 'turquoise', 'cadetblue', 'lightslategray', 'lightslategrey'}
     blues = {'blue', 'mediumblue', 'mediumslateblue', 'royalblue', 'steelblue', 'slategray', 'slategrey'}
@@ -34,10 +37,10 @@ def find_color_recommend(in_col):
     purples = {'blueviolet', 'darkmagenta', 'darkorchid', 'darkviolet', 'indigo', 'mediumorchid', 'mediumpurple', 'mediumvioletred',\
              'orchid', 'plum', 'purple', 'thistle'}
     darkreds = {'darkred', 'firebrick', 'maroon'}
-    reds = {'crimson', 'orangered', 'red'}
+    reds = {'crimson', 'orangered', 'brown', 'red'}
     pinks = {'coral', 'darksalmon', 'deeppink', 'fuchsia', 'hotpink', 'lightcoral', 'lightpink', 'magenta', 'mistyrose', 'peachpuff', 'pink',\
-             'salmon', 'violet', 'indianred', 'palevioletred'}
-    oranges = {'darkorange', 'lightsalmon', 'orange', 'peru', 'sandybrown', 'tomato'}
+             'salmon', 'violet', 'indianred', 'palevioletred', 'rosybrown'}
+    oranges = {'darkorange', 'lightsalmon', 'chocolate', 'orange', 'peru', 'sandybrown', 'tomato'}
     lightyellows = {'lemonchiffon', 'lightgoldenrodyellow', 'lightyellow', 'moccasin', 'navajowhite', 'palegoldenrod', 'wheat'}
     yellows = {'gold', 'yellow', 'khaki'}
     darkyellows = {'darkgoldenrod', 'goldenrod', 'darkkhaki'}
