@@ -32,6 +32,6 @@ app.post('/api/upload', upload.array('photo', 3), (req, res) => {
 
 app.listen(3000, () => {
   console.log(
-    `server is running at http://10.0.0.86:${3000}`
+    `server is running at http://10.0.0.84:${3000}`
   );
 });
