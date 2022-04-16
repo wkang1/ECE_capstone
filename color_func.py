@@ -10,13 +10,6 @@ def closest_color(unknown_color):
         min_colors[(r_diff + g_diff + b_diff)] = name
     return min_colors[min(min_colors.keys())]
 
-def get_color_name(unknown_color):
-    try:
-        color_name = webcolors.rgb_to_name(unknown_color)
-    except ValueError:
-        color_name = closest_color(unknown_color)
-    return color_name
-
 def find_color_recommend(in_col_r, in_col_g, in_col_b):
 
     in_col = (in_col_r,in_col_g,in_col_b)
