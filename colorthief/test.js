@@ -7,7 +7,7 @@ const { resolve } = require('path');
 const ColorThief = require('colorthief');
 
 //load image
-const img = resolve(process.cwd(), 'Solid_black.png');
+const img = resolve(process.cwd(), '/home/d4/myflection/crop_image/cropped_image.jpg');
 
 //getting color
 ColorThief.getColor(img)
