@@ -82,7 +82,7 @@ def find_weather_recommend(cond, temp):
             weather_recommendations.add('sleveless')
 
     if(temp <= 60):
-        weather_recommendations.update(('sweater', 'hoodie', 'sweatshirt'))
+        weather_recommendations.update(('sweater', 'hoodie'))
 
     if((cond == 'Sunny') | (cond == 'Partly cloudy')):
         weather_recommendations.add('hat')
