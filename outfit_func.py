@@ -13,6 +13,9 @@ def find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality):
 
     weather_recommendations = wf.find_weather_recommend(cond, temp)
 
+    if formality == 'formal':
+        weather_recommendations.update('suit', 'dress')
+
     top_wardrobe = {}
     bot_wardrobe = {}
     acc_wardrobe = {}
@@ -73,7 +76,7 @@ def find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality):
         else:
             clothe_points += 0  
 
-        # print(clothe_points)
+        # print(key, clothe_points)
         top_wardrobe_points[key] = clothe_points
 
     # print('top wardrobe points: ', top_wardrobe_points)
@@ -131,12 +134,26 @@ def find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality):
     
     outfit_storage = {}
 
-    best_tops = heapq.nlargest(5, top_wardrobe_points.keys())
-    best_bots = heapq.nlargest(5, bot_wardrobe_points.keys())
+    best_tops = list(top_wardrobe_points.keys())[0:5]
+    best_bots = list(bot_wardrobe_points.keys())[0:5]
     if len(acc_wardrobe_points) > 0:
-        best_accs = heapq.nlargest(5, acc_wardrobe_points.keys())
+        best_accs = list(acc_wardrobe_points.keys())[0:5]
     else:
         best_accs = None
+
+
+    for item in top_wardrobe_points:
+        for index in range(len(best_tops)):
+            if (top_wardrobe_points[item] > top_wardrobe_points[best_tops[index]]) and not (item in best_tops):
+                best_tops[index] = item
+
+    for item in bot_wardrobe_points:
+        for index in range(len(best_bots)):
+            if (bot_wardrobe_points[item] > bot_wardrobe_points[best_bots[index]]) and not (item in best_bots):
+                best_bots[index] = item
+                
+
+
     # print('best tops, bots, and accs: ', best_tops, best_bots, best_accs)
 
     if best_accs == None:
@@ -179,7 +196,12 @@ def find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality):
                     curr_out_pts += top_wardrobe_points[top] + bot_wardrobe_points[bot] + acc_wardrobe_points[acc]
                     outfit_storage[curr_out] = curr_out_pts
     
-    outfit_recommendation += heapq.nlargest(5, outfit_storage.keys())
+    outfit_recommendation += list(outfit_storage.keys())[0:5]
+
+    for item in outfit_storage:
+        for index in range(len(outfit_recommendation)):
+            if (outfit_storage[item] > outfit_storage[outfit_recommendation[index]]) and not (item in outfit_recommendation):
+                outfit_recommendation[index] = item
 
     # for outfit in outfit_recommendation:
         # print('outfit ', outfit, ' is worth ', outfit_storage[outfit], ' points')
