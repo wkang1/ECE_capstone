@@ -12,7 +12,7 @@ def find_weather():
         elif (count == 34):
             temp = line
         else:
-            continue
+            None
 
     seas_int = seas_int[21:23]
     seas_int = int(seas_int)
@@ -70,36 +70,31 @@ def is_rainy(cond):
 #       
 #       jacket
 #       coat
-def find_weather_recommend(seas, cond, temp):
+def find_weather_recommend(cond, temp):
 
-    weather_recommendations = ()
+    weather_recommendations = {'shirt','pants', 'skirt'}
 
-    if(((temp <= 65) & (seas != 'summer')) | (seas == 'winter')):
-        weather_recommendations += ('shirt_long',)
-    elif(((temp > 65) | (seas == 'summer')) & (seas != 'winter')):
-        weather_recommendations += ('shirt_short',)
-        if((temp > 95) | (seas == 'summer')):
-            weather_recommendations += ('shirt_slvlss',)
+    if(temp <= 65):
+        weather_recommendations.add('long')
+    elif(temp > 65):
+        weather_recommendations.add('short')
+        if(temp > 90):
+            weather_recommendations.add('sleveless')
 
-    if(((temp <= 60) & (seas == 'spring')) | (seas == 'winter')):
-        weather_recommendations += ('sweater', 'hoodie', 'sweatshirt')
-    
-    if(((temp < 80) & (seas != 'summer')) | (seas == 'winter')):
-        weather_recommendations += ('pants_long', 'skirt_long')
-    elif((temp >= 80) | (seas == 'summer')):
-        weather_recommendations += ('pants_short', 'skirt_short')
+    if(temp <= 60):
+        weather_recommendations.update(('sweater', 'hoodie', 'sweatshirt'))
 
     if((cond == 'Sunny') | (cond == 'Partly cloudy')):
-        weather_recommendations += ('hat',)
+        weather_recommendations.add('hat')
     
     if is_snowy(cond):
                 if(cond == 'Freezing drizzle') | (cond == 'Heavy freezing drizzle'):
-                    weather_recommendations += ('scarf', 'gloves', 'earmuff', 'jacket', 'coat', 'umbrella')
+                    weather_recommendations.update(('scarf', 'gloves', 'earmuff', 'jacket', 'coat', 'umbrella'))
                 else:
-                    weather_recommendations += ('scarf', 'gloves', 'earmuff', 'jacket', 'coat')
+                    weather_recommendations.update(('scarf', 'gloves', 'earmuff', 'jacket', 'coat'))
     elif is_rainy(cond):
-                    weather_recommendations += ('umbrella', 'jacket', 'coat')
-    elif((temp <= 40) | (seas == 'winter')):
-        weather_recommendations += ('jacket', 'coat')
+                    weather_recommendations.update(('umbrella', 'jacket', 'coat'))
+    elif((temp <= 40)):
+        weather_recommendations.update(('jacket', 'coat'))
     
     return weather_recommendations
