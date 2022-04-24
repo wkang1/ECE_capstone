@@ -21,7 +21,7 @@
     "crypto-js": "^3.1.9-1",
     "dotenv": "^16.0.0",
     "events": "^3.3.0",
-    "expo": "~44.0.0",
+    "expo": "^1.0.0",
     "expo-file-system": "~13.1.4",
     "expo-image-picker": "~12.0.1",
     "expo-media-library": "~14.0.0",

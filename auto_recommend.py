@@ -1,7 +1,7 @@
 import outfit_func as of
 
 # read output.txt from colorthief api
-with open(/home/d4/myflection/colorthief/output.txt, 'r') as f:
+with open(home/d4/myflection/colorthief/output.txt, 'r') as f:
     rgb_values = f.split(' ')
 
 # set rgb values from colorthief
