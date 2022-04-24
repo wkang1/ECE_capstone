@@ -1,12 +1,13 @@
 import outfit_func as of
 
-in_col_r = input("Enter R Value: ")
-in_col_g = input("Enter G Value: ")
-in_col_b = input("Enter B Value: ")
 
-# in_col_r = '10'
-# in_col_g = '10'
-# in_col_b = '10'
+file = open("/home/d4/myflection/opencv_color/output.txt", "rt")
+contents = file.read()
+in_col_r = contents[0]
+in_col_g = contents[1]
+in_col_b = contents[2]
+
+print(in_col_r)
 
 in_col_r = int(in_col_r)
 in_col_g = int(in_col_g)
