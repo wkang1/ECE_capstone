@@ -3,14 +3,17 @@ import { NativeRouter as Router, Route, Routes } from "react-router-native";
 
 import AddPhoto from "./AddPhotoScreen";
 import Home from "./Home";
+import Setup from "./Setup";
+import End from "./End";
 
 function App() {
   return (
     <Router>
       <Routes>
-      <Route oath="/" element={<Setup />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/addPhoto" element={<AddPhoto />} />
+      <Route path="/setup" element={<Setup />} />
+      <Route path="/end" element={<End />} />
     </Routes>
    </Router>
   );

@@ -1,30 +1,17 @@
-// Setup.js
-// we want two buttons (formal or informal)
-// then a start button at the button which runs 
 import React from "react";
 import { TextInput, View, StyleSheet, Button } from "react-native";
 import { Text } from "react-native";
-import { useNavigate } from "react-router-dom";
 
-function Setup() {
-  let navigate = useNavigate();
+function End() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Text style={styles.title}>
-      Choose your formality.
+      Start outfit recommendation!
     </Text>
     <Button
-      title="Formal"
+      title="Start"
       onPress={() => {
-        console.log("requested formal attire");
-        navigate("/end");
-      }}
-    />
-    <Button
-      title="Informal"
-      onPress={() => {
-        console.log("request informal attire");
-        navigate("/end");
+        console.log("starting outfit recommendation script");
       }}
     />
   </View>
@@ -52,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Setup;
+export default End;

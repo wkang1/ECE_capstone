@@ -3,25 +3,17 @@ import axios from "axios";
 import { View, Image, Button, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { StyleSheet } from 'react-native';
+import { useEffect } from 'react';
 
 const SERVER_URL = 'https://sheet.best/api/sheets/725a3d83-79cc-4a91-90ec-aefe53604c53';
 const LOCALHOST_URL = 'http://10.0.0.84:3000';
 
-const createFormData = (photo) => {
-  const data = new FormData();
-
-  data.append('photo', {
-    name: photo.fileName,
-    type: photo.type,
-    uri: Platform.OS === 'ios' ? photo.uri.replace('file://', '') : photo.uri,
-  });
-
-  return data;
-};
-
 function AddPhoto() {
   const [photo, setPhoto] = React.useState(null);
   const [displayUrl, setDisplayUrl] = React.useState("");
+  let navigate = useNavigate();
 
   const handleChoosePhoto = async() => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -32,7 +24,11 @@ function AddPhoto() {
     setPhoto(result);
   };
 
-  const cloudinaryUpload = (photo) => {
+  const logChange = useEffect(() => {
+    console.log('new value of display url ', displayUrl);
+  }, [displayUrl]);
+
+  function cloudinaryUpload(photo) {
     const data = new FormData()
     data.append('file', photo)
     data.append('upload_preset', 'imageuploads')
@@ -42,11 +38,9 @@ function AddPhoto() {
       body: data
     }).then(res => res.json()).
       then(data => {
-        console.log(data);
+        console.log(data.secure_url);
         setDisplayUrl(data.secure_url);
-      }).catch(err => {
-        Alert.alert("An Error Occured While Uploading")
-      })
+      });
   }
 
   const handleUploadPhoto = () => {
@@ -63,22 +57,19 @@ function AddPhoto() {
       name,
     }
     cloudinaryUpload(source);
+    logChange;
     axios.post(SERVER_URL, { displayUrl })
     .then((response) => {
       console.log(response);
-    })
-    // fetch(`${LOCALHOST_URL}/api/upload`, {
-    //   method: 'POST',
-    //   body: createFormData(photo),
-    // })
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     console.log('response', response);
-    //   })
-    //   .catch((error) => {
-    //     console.log('error', error);
-    //   });
+    });
   };
+
+  const uploadToSpreadsheet = () => {
+    axios.post(SERVER_URL, { displayUrl })
+    .then((response) => {
+      console.log(response);
+    });
+  }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -88,12 +79,23 @@ function AddPhoto() {
             source={{ uri: photo.uri }}
             style={{ width: 300, height: 300 }}
           />
-          <Button title="Upload Photo" onPress={handleUploadPhoto} encType='multipart/form-data'/>
+          <Button title="Upload Photo" onPress={handleUploadPhoto} />
         </>
       )}
       <Button title="Choose Photo" onPress={handleChoosePhoto} />
+      <View style={styles.space} />
+      <Button title="Finished" onPress={() => {uploadToSpreadsheet(); navigate("/setup")}} />
+      <View style={styles.space} />
+      <Button title="Add another" onPress={() => {uploadToSpreadsheet(); navigate("/")}} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  space: {
+    // width: 20, // or whatever size you need
+    height: 50,
+  },
+})
 
 export default AddPhoto;
