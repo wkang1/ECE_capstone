@@ -184,7 +184,7 @@ function Home() {
         onPress={() => {
           axios.post(uri, { value, value1, value2, value3, value4, value5 })
           .then((response) => {
-            console.log(response);
+            // console.log(response);
           })
           navigate("/addPhoto");
       }}
