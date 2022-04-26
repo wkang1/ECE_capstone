@@ -16,4 +16,4 @@ bottom_crop = data['part_candidates'][0]['8'][1]
 cropped_img = img.crop((left_crop, top_crop, right_crop, bottom_crop))
 
 # save image
-cropped_img.save("/home/d4/myflection/colorthief/cropped_image.jpg")
+cropped_img.save("/home/d4/myflection/opencv_color/cropped_image.jpg")

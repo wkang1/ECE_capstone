@@ -1,10 +1,11 @@
 import outfit_func as of
 
-# read output.txt from colorthief api
-with open(home/d4/myflection/colorthief/output.txt, 'r') as f:
-    rgb_values = f.split(' ')
+# read output.txt from opencv api
+with open('/home/d4/myflection/opencv_color/output.txt', 'r') as f:
+    color_line = f.readline()
+    rgb_values = color_line[1:-2].split(', ')
 
-# set rgb values from colorthief
+# set rgb values from opencv
 in_col_r = rgb_values[0]
 in_col_g = rgb_values[1]
 in_col_b = rgb_values[2]
