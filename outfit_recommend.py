@@ -1,8 +1,8 @@
 import outfit_func as of
 
-in_col_r = input("Enter R Value: ")
-in_col_g = input("Enter G Value: ")
-in_col_b = input("Enter B Value: ")
+in_col_r = input("Enter R Value: ").strip()
+in_col_g = input("Enter G Value: ").strip()
+in_col_b = input("Enter B Value: ").strip()
 
 # in_col_r = '10'
 # in_col_g = '10'
