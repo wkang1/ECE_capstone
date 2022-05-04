@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import { View, Image, Button, Platform } from 'react-native';
+import { View, Image, Button } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,19 @@ const SERVER_URL = 'https://sheet.best/api/sheets/725a3d83-79cc-4a91-90ec-aefe53
 const LOCALHOST_URL = 'http://10.0.0.84:3000';
 
 function AddPhoto() {
+  const location = useLocation();
+  const category = location.state.category_;
+  const typeOfClothing = location.state.type_;
+  const formality = location.state.formality_;
+  const length = location.state.length_;
+  const season = location.state.season_;
+  const color = location.state.color_;
+  console.log(location.state.category_);
+  console.log(location.state.type_);
+  console.log(location.state.formality_);
+  console.log(location.state.length_);
+  console.log(location.state.season_);
+  console.log(location.state.color_);
   const [photo, setPhoto] = React.useState(null);
   const [displayUrl, setDisplayUrl] = React.useState("");
   let navigate = useNavigate();
@@ -65,10 +78,14 @@ function AddPhoto() {
   };
 
   const uploadToSpreadsheet = () => {
-    axios.post(SERVER_URL, { displayUrl })
+    axios.post(SERVER_URL, { category, typeOfClothing, formality, length, season, color, displayUrl })
     .then((response) => {
       console.log(response);
-    });
+    })
+    // axios.post(SERVER_URL, {  })
+    // .then((response) => {
+    //   console.log(response);
+    // });
   }
 
   return (
