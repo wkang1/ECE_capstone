@@ -31,5 +31,5 @@ def dominant_colors(image):  # PIL image input
 	 print(colors[0])
     return colors                    # returns colors in order of dominance
 
-picture = img.imread('/home/d4/myflection/crop_image/cropped_image.jpg')
+picture = img.imread('/home/d4/myflection/opencv_color/cropped_image.jpg')
 dominant_colors(picture)

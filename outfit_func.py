@@ -1,6 +1,6 @@
 import color_func as cf, weather_func as wf
 import csv
-import heapq
+import requests
 
 def find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality):
 
@@ -21,8 +21,15 @@ def find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality):
     acc_wardrobe = {}
     Clothes = []
 
-    with open('wardrobe.csv', newline='') as wardrobe_csv:
-        Clothes_csv = csv.reader(wardrobe_csv, delimiter=',')
+    wardrobe_url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuFSt6GJ-_i9gQnj6kiX5npiYNoLblwWeRYJaD8zmqIab6PceLpXegY0dRFtM_QXaHwm1HKncWSQ06/pub?gid=0&single=true&output=csv'
+
+
+    with requests.Session() as s:
+        wardrobe_csv = s.get(wardrobe_url)
+
+        decoded_wardrobe = wardrobe_csv.content.decode('utf-8')
+
+        Clothes_csv = csv.reader(decoded_wardrobe.splitlines(), delimiter=',')
         line_count = 0
         for row in Clothes_csv:
             line_count += 1
@@ -37,7 +44,7 @@ def find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality):
                     bot_wardrobe[row[6]] = Clothes
                 else:
                     acc_wardrobe[row[6]] = Clothes
-                # print(f'\t', Clothes)
+        #         print(f'\t', Clothes)
         # print(f'Processed {line_count} lines.')
         # print('top wardrobe: ', top_wardrobe)
         # print('bot wardrobe: ', bot_wardrobe)
