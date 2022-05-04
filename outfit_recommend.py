@@ -1,7 +1,10 @@
 import outfit_func as of
 
-file = open("/home/d4/myflection/opencv_color/output.txt", "rt")
-contents = file.read()
+# file = open("/home/d4/myflection/opencv_color/output.txt", "rt")
+with open('/home/d4/myflection/opencv_color/output.txt', 'r') as f:
+    color_line = f.readline()
+    rgb_values = color_line[1:-2].split(', ')
+
 in_col_r = contents[0]
 in_col_g = contents[1]
 in_col_b = contents[2]

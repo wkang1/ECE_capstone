@@ -1,4 +1,5 @@
 import outfit_func as of
+import sys
 
 # read output.txt from opencv api
 with open('/home/d4/myflection/opencv_color/output.txt', 'r') as f:
@@ -19,3 +20,7 @@ formality = 'informal'
 outfit_recommendation = of.find_outfit_recommend(in_col_r, in_col_g, in_col_b, formality)
 
 print('outfit recommendations: ', outfit_recommendation)
+
+with open("recommendations.txt", 'w') as sys.stdout:
+	for recommendation in outfit_recommendation:
+		print(recommendation)
