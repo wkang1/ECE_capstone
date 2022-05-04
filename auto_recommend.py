@@ -21,6 +21,17 @@ outfit_recommendation = of.find_outfit_recommend(in_col_r, in_col_g, in_col_b, f
 
 print('outfit recommendations: ', outfit_recommendation)
 
-with open("recommendations.txt", 'w') as sys.stdout:
-	for recommendation in outfit_recommendation:
-		print(recommendation)
+with open("recommendation0.txt", 'w') as sys.stdout:
+	print(outfit_recommendation[0])
+
+with open("recommendation1.txt", 'w') as sys.stdout:
+	print(outfit_recommendation[1])
+
+with open("recommendation2.txt", 'w') as sys.stdout:
+	print(outfit_recommendation[2])
+
+with open("recommendation3.txt", 'w') as sys.stdout:
+	print(outfit_recommendation[3])
+
+with open("recommendation4.txt", 'w') as sys.stdout:
+	print(outfit_recommendation[4])
