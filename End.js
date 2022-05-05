@@ -2,6 +2,8 @@ import React from "react";
 import { TextInput, View, StyleSheet, Button } from "react-native";
 import { Text } from "react-native";
 
+const SERVER_URL = 'http://172.26.109.155:3000'
+
 function End() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -12,6 +14,11 @@ function End() {
       title="Start"
       onPress={() => {
         console.log("starting outfit recommendation script");
+        fetch(`${SERVER_URL}`, {
+          method: 'GET',
+        })
+        .then((response) => console.log(response.json()))
+        .catch((error) => console.log('error', error));
       }}
     />
   </View>
