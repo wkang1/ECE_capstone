@@ -18,7 +18,7 @@ function End() {
           method: 'GET',
         })
         .then((response) => console.log(response.json()))
-        .catch((error) => console.log('error', error));
+        .catch((error) => console.log('error:', error));
       }}
     />
   </View>

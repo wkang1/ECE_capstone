@@ -3,7 +3,7 @@ const app = express()
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.send('received request')
   const { exec } = require("child_process");
 
   exec("bash ./../automation.sh", (error, stdout, stderr) => {
