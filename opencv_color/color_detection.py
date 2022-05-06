@@ -28,7 +28,7 @@ def dominant_colors(image):  # PIL image input
         colors.append(tuple([int(code) for code in codes[index]]))
     
     with open("output.txt", 'w') as sys.stdout:
-	 print(colors[0])
+    	print(colors[0])
     return colors                    # returns colors in order of dominance
 
 picture = img.imread('/home/d4/myflection/opencv_color/cropped_image.jpg')
